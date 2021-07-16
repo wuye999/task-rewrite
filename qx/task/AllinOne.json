@@ -1,8 +1,17 @@
 {
-    "name": "公众号少年歌行pro全网合一整理",
+    "name": "全网合一整理",
     "description": "请善用搜索功能哦， 比如搜索京东可只显示京东系列脚本",
-    "task": [   
-               "0 8,12 * * * https://ghproxy.com/https://raw.githubusercontent.com/panghu999/panghu/master/jd_wish.js, tag=京东众筹许愿池柠檬版, img-url=https://ghproxy.com/https://raw.githubusercontent.com/wuye999/QuanX-1/main/pic/ningmeng.png, enabled=true",
+    "task": [ 
+    	    "0 0 1 1 * https://raw.githubusercontent.com/xl2101200/-/main/ppz.js, tag=拼拼猪（ios）, img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
+    	    "0 10 * * * https://raw.githubusercontent.com/xl2101200/-/main/zbsy.js, tag=左边众测试用（ios）, img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
+           "0 8 * * * https://ghproxy.com/https://raw.githubusercontent.com/xl2101200/-/main/ycb.js, tag=永晨宝(安卓), img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
+           "0 8 * * * https://ghproxy.com/https://raw.githubusercontent.com/xl2101200/-/main/mlxxl.js, tag=魔力消消乐(安卓), img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
+           "0 8 * * * https://ghproxy.com/https://raw.githubusercontent.com/xl2101200/-/main/yt.js, tag=炎兔(ios/安卓), img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
+           "0 10 * * * https://ghproxy.com/https://raw.githubusercontent.com/xl2101200/-/main/dk.js, tag=蛋咖（安卓）, img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
+           "0 10 * * * https://ghproxy.com/https://raw.githubusercontent.com/xl2101200/-/main/lxgg.js, tag=乐享广告（安卓）, img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
+           "0 10 * * * https://ghproxy.com/https://raw.githubusercontent.com/xl2101200/-/main/lw.js, tag=乐挖（安卓）, img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
+           "0 8-14/1 * * * https://ghproxy.com/https://raw.githubusercontent.com/Wenmoux/scripts/wen/other/jrkuaixun.js, tag=10s阅读, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true",
+           "0 8,12 * * * https://ghproxy.com/https://raw.githubusercontent.com/panghu999/panghu/master/jd_wish.js, tag=京东众筹许愿池柠檬版, img-url=https://ghproxy.com/https://raw.githubusercontent.com/wuye999/QuanX-1/main/pic/ningmeng.png, enabled=true",
 	       "0 */1 * * *  https://ghproxy.com/https://raw.githubusercontent.com/panghu999/panghu/master/jd_joy-park.js, tag=京东汪汪乐园柠檬版, img-url=https://ghproxy.com/https://raw.githubusercontent.com/wuye999/QuanX-1/main/pic/ningmeng.png, enabled=true",
 	       "0 * * * * https://ghproxy.com/https://raw.githubusercontent.com/cdle/jd_study/main/jd_dogsEmploy.js, tag=京东汪汪乐园开工位一次性脚本, img-url=https://ghproxy.com/https://raw.githubusercontent.com/Youthsongs/QuanX/main/pic/cdle.png, enabled=true",
 	       "15 0,6,13,19,21 * * * https://ghproxy.com/https://raw.githubusercontent.com/qqsdff/script/main/jd/jxzpk.js, tag=京东京享值PK史蒂夫版, img-url=https://ghproxy.com/https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true",
@@ -29,7 +38,6 @@
 	       "0 10 * * * https://ghproxy.com/https://raw.githubusercontent.com/xl2101200/-/main/zbsy.js, tag=左边众测试用（ios）, img-url=https://raw.githubusercontent.com/wuye999/QuanX-1/main/icons/tom.png, enabled=true",
 	       "30 7 * * * https://ghproxy.com/https://raw.githubusercontent.com/yuthpoetry/autosync/Wenmoux/jd/jd_qqxing.js, tag=京东星系牧场, img-url=https://ghproxy.com/https://raw.githubusercontent.com/wuye999/QuanX-1/main/pic/wen.png, enabled=true",
 	       "5 0 * * * https://ghproxy.com/https://raw.githubusercontent.com/yuthpoetry/autosync/zooPanda/zooOpencard11.js, tag=京东618开卡活动11, img-url=https://ghproxy.com/https://raw.githubusercontent.com/wuye999/QuanX-1/main/pic/zoo.png, enabled=true",
-	       "0 8-14/1 * * * https://ghproxy.com/https://raw.githubusercontent.com/yuthpoetry/autosync/Wenmoux/other/jrkuaixun.js, tag=10s阅读, img-url=https://ghproxy.com/https://raw.githubusercontent.com/wuye999/QuanX-1/main/pic/wen.png, enabled=true",
 	       "*/12 * * * * https://ghproxy.com/https://raw.githubusercontent.com/CenBoMin/GithubSync/main/DKDVIDEO/dkdvideo.js, tag=多看点姐姐修复版, img-url=https://cdn.jsdelivr.net/gh/Youthsongs/QuanX@master/pic/jiejie.png, enabled=true",
 	       "5 0 * * * https://ghproxy.com/https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/hzh/hzh.js, tag=华住会签到, img-url=https://ghproxy.com/https://raw.githubusercontent.com/wuye999/QuanX-1/main/pic/hzh.png, enabled=true",
 	       "0 23 * * * https://ghproxy.com/https://raw.githubusercontent.com/xl2101200/-/main/ppz.js, tag=拼拼猪, img-url=https://ghproxy.com/https://raw.githubusercontent.com/wuye999/QuanX-1/main/icons/tom.png, enabled=true",
