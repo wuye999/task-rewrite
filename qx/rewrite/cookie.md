@@ -10,17 +10,11 @@
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zongqingck.conf, tag=YouthCookie, update-interval=86400, opt-parser=false, enabled=true
 ;阅读body获取
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zqbody.conf, tag=YouthGetBody, update-interval=86400, opt-parser=false, enabled=true
-
-2.定时任务：
-;到配置文件找到[task_local]贴代码：
-
-;签到&转盘任务
-*/30 0-23 * * * https://ghproxy.com/https://raw.githubusercontent.com/CenBoMin/QuantumultX/master/Scripts/Youth/youth.js, tag=中青看点极速版, img-url=https://ghproxy.com/https://raw.githubusercontent.com/Orz-3/task/master/youth.png, enabled=true
-;自动阅读任务
-10 1-23 * * * https://ghproxy.com/https://raw.githubusercontent.com/CenBoMin/QuantumultX/master/Scripts/Youth/Youth_AutoRead.js, tag=中青阅读, img-url=https://ghproxy.com/https://raw.githubusercontent.com/Orz-3/task/master/youth.png, enabled=true
+中青看看赚&浏览赚
+https://raw.githubusercontent.com/wuye999/AutoSyncScript/ztxtop/rewrite-zqkkz.plugin, tag=中青看看赚&浏览赚cookie
 
 
- 3.食用方法：
+ 2.食用方法：
 1.到[重写]-[引用],启动YouthCookie禁用YouthGetBody,先获取cookie
 
 签到cookie:
@@ -41,6 +35,12 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 4.手动执行一次定时脚本-”中青阅读”,是不是运行正常
 
 5.获取更多的body,一天一般上限7200金币,建议获取200个body
+
+6. 浏览赚：任务中心-》看看赚-》顶部的浏览赚-》点任务开始抓到任务数据包即可
+
+7. 看看赚：任务中心-》看看赚-》点看看赚任务抓到任务数据包即可
+8. 任务中心尝试添加看看赚入口
+9. 已有阅读时长数据时，只保存大于1分钟的时长数据
 
 ## 较全的库
 https://github.com/SallyU/fuidvsfjkd/tree/master/app_gift
