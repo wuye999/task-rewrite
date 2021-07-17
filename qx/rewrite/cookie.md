@@ -1,36 +1,36 @@
 
-## 中青阅读极速版，一天撸羊毛大概1.5-2元
+## 中青阅读极速版，一天撸羊毛大概1.5-2元   
 
-应用版本2.02
-https://github.com/wuye999/task-rewrite/tree/main/itunes
-爱思助手即可导入安装
+应用版本2.02        
+https://github.com/wuye999/task-rewrite/tree/main/itunes           
+爱思助手即可导入安装          
 
- 1.重写引用：
-;到配置文件找到[rewrite_remote]贴代码：
+ 1.重写引用：          
+;到配置文件找到[rewrite_remote]贴代码：          
 
-;签到cookie获取
+;签到cookie获取         
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zongqingck.conf, tag=YouthCookie, update-interval=86400, opt-parser=false, enabled=true
-;阅读body获取
+;阅读body获取          
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zqbody.conf, tag=YouthGetBody, update-interval=86400, opt-parser=false, enabled=true
-中青看看赚&浏览赚
+中青看看赚&浏览赚           
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zqkkz.conf, tag=中青看看赚&浏览赚cookie
 
 
- 2.食用方法：
-1.到[重写]-[引用],启动YouthCookie禁用YouthGetBody,先获取cookie
+ 2.食用方法：         
+1.到[重写]-[引用],启动YouthCookie禁用YouthGetBody,先获取cookie            
 
-签到cookie:
-进入app，进入任务中心或者签到一次
+签到cookie:         
+进入app，进入任务中心或者签到一次          
 
-阅读请求body&阅读时长:
-阅读一篇文章或者视频到获取金币奖励
+阅读请求body&阅读时长:      
+阅读一篇文章或者视频到获取金币奖励            
 
-惊喜红包:
-在阅读文章拉下面有个惊喜红包，点击获取
+惊喜红包:          
+在阅读文章拉下面有个惊喜红包，点击获取             
 
-2.手动执行一次定时脚本-”中青看点极速版”,看签到是不是正常
+2.手动执行一次定时脚本-”中青看点极速版”,看签到是不是正常           
 
-3.到[重写]-[引用],启动YouthGetBody禁用YouthCookie,获取文章body
+3.到[重写]-[引用],启动YouthGetBody禁用YouthCookie,获取文章body           
 
 阅读请求body:阅读一篇文章或者视频到获取金币奖励,通知提示body1
 
