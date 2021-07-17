@@ -1,4 +1,47 @@
 
+## 中青阅读极速版，一天撸羊毛大概1.5-2元
+
+应用版本2.02
+
+ 1.重写引用：
+;到配置文件找到[rewrite_remote]贴代码：
+
+;签到cookie获取
+https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zongqingck.conf, tag=YouthCookie, update-interval=86400, opt-parser=false, enabled=true
+;阅读body获取
+https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zqbody.conf, tag=YouthGetBody, update-interval=86400, opt-parser=false, enabled=true
+
+2.定时任务：
+;到配置文件找到[task_local]贴代码：
+
+;签到&转盘任务
+*/30 0-23 * * * https://ghproxy.com/https://raw.githubusercontent.com/CenBoMin/QuantumultX/master/Scripts/Youth/youth.js, tag=中青看点极速版, img-url=https://ghproxy.com/https://raw.githubusercontent.com/Orz-3/task/master/youth.png, enabled=true
+;自动阅读任务
+10 1-23 * * * https://ghproxy.com/https://raw.githubusercontent.com/CenBoMin/QuantumultX/master/Scripts/Youth/Youth_AutoRead.js, tag=中青阅读, img-url=https://ghproxy.com/https://raw.githubusercontent.com/Orz-3/task/master/youth.png, enabled=true
+
+
+ 3.食用方法：
+1.到[重写]-[引用],启动YouthCookie禁用YouthGetBody,先获取cookie
+
+签到cookie:
+进入app，进入任务中心或者签到一次
+
+阅读请求body&阅读时长:
+阅读一篇文章或者视频到获取金币奖励
+
+惊喜红包:
+在阅读文章拉下面有个惊喜红包，点击获取
+
+2.手动执行一次定时脚本-”中青看点极速版”,看签到是不是正常
+
+3.到[重写]-[引用],启动YouthGetBody禁用YouthCookie,获取文章body
+
+阅读请求body:阅读一篇文章或者视频到获取金币奖励,通知提示body1
+
+4.手动执行一次定时脚本-”中青阅读”,是不是运行正常
+
+5.获取更多的body,一天一般上限7200金币,建议获取200个body
+
 ## 较全的库
 https://github.com/SallyU/fuidvsfjkd/tree/master/app_gift
 
