@@ -1,15 +1,14 @@
 {
     "name": "少年全网合一整理",
     "description": "请善用搜索功能哦， 比如搜索京东可只显示京东系列脚本",
-    "task": [ 
-
+    "task": [
     	"*/30 0-23 * * * https://ghproxy.com/https://raw.githubusercontent.com/CenBoMin/QuantumultX/master/Scripts/Youth/youth.js, tag=CenBoMin中青看点极速版, img-url=https://ghproxy.com/https://raw.githubusercontent.com/Orz-3/task/master/youth.png, enabled=true",
     	"10 1-23 * * * https://ghproxy.com/https://raw.githubusercontent.com/CenBoMin/QuantumultX/master/Scripts/Youth/Youth_AutoRead.js, tag=CenBoMin中青阅读, img-url=https://ghproxy.com/https://raw.githubusercontent.com/Orz-3/task/master/youth.png, enabled=true",
     	"*/30 5-22 * * * https://gitee.com/curtinlv/qx/raw/master/Script/youthShareRead.js, tag=curtinlv中青分享, img-url=https://raw.githubusercontent.com/Orz-3/task/master/youth.png, enabled=true",
     	"*/30 5-22 * * * https://gitee.com/curtinlv/qx/raw/master/Script/Youth_AutoRead.js, tag=curtinlv中青自动阅读, img-url=https://raw.githubusercontent.com/Orz-3/task/master/youth.png, enabled=true",
-		"*/30 5-22 * * * https://gitee.com/curtinlv/qx/raw/master/Script/youth.js, tag=curtinlv中青签到转盘, img-url=https://raw.githubusercontent.com/Orz-3/task/master/youth.png, enabled=true",
+	    "*/30 5-22 * * * https://gitee.com/curtinlv/qx/raw/master/Script/youth.js, tag=curtinlv中青签到转盘, img-url=https://raw.githubusercontent.com/Orz-3/task/master/youth.png, enabled=true",
     	"*/10 */3 * * * https://ghproxy.com/https://raw.githubusercontent.com/GoodHolidays/Scripts/master/Task/jukan.js, tag=聚看点, img-url=https://github.com/Sunert/ProxyConfig/raw/master/QuantumultX/Rules/Images/ICON/jukan.png, enabled=true",
-    	"0 16 * * * https://ghproxy.com/https://raw.githubusercontent.com/CenBoMin/GithubSync/main/TXSTOCK/txstockqx.js, tag=腾讯自选股",
+	    "0 16 * * * https://ghproxy.com/https://raw.githubusercontent.com/CenBoMin/GithubSync/main/TXSTOCK/txstockqx.js, tag=腾讯自选股, img-url=https://github.com/Sunert/ProxyConfig/raw/master/QuantumultX/Rules/Images/ICON/jukan.png, enabled=true",
     	    "0 0 1 1 * https://raw.githubusercontent.com/xl2101200/-/main/ppz.js, tag=拼拼猪（ios）, img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
     	    "0 10 * * * https://raw.githubusercontent.com/xl2101200/-/main/zbsy.js, tag=左边众测试用（ios）, img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
            "0 8 * * * https://ghproxy.com/https://raw.githubusercontent.com/xl2101200/-/main/ycb.js, tag=永晨宝(安卓), img-url=https://raw.githubusercontent.com/sngxpro/QuanX/master/icons/tom.png, enabled=true",
