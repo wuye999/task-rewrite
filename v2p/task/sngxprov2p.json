@@ -3109,7 +3109,7 @@
       }
     },
     {
-      "name": "今日头条极速版",
+      "name": "ZhiYi-N今日头条极速版",
       "type": "cron",
       "time": "35 8-23 * * *",
       "job": {
@@ -4063,27 +4063,27 @@
       }
     },
     {
-      "name": "中青浏览赚",
+      "name": "ztxtop中青看看赚&浏览赚",
       "type": "cron",
-      "time": "20 5 10 * * *",
+      "time": "5 10 * * *",
       "job": {
         "type": "runjs",
-        "target": "https://ghproxy.com/https://raw.githubusercontent.com/GoodHolidays/Scripts/master/Task/youth_gain.js"
+        "target": "https://ghproxy.com/https://raw.githubusercontent.com/ztxtop/x/main/youth_banner.js"
       }
     },
     {
-      "name": "中青自动阅读",
+      "name": "sunert中青自动阅读",
       "type": "cron",
-      "time": "20 15 */2 * * *",
+      "time": "15 */2 * * *",
       "job": {
         "type": "runjs",
         "target": "https://ghproxy.com/https://raw.githubusercontent.com/GoodHolidays/Scripts/master/Task/Youth_Read.js"
       }
     },
     {
-      "name": "中青看点极速版",
+      "name": "sunert中青看点极速版",
       "type": "cron",
-      "time": "20 11 8 * * *",
+      "time": "11 */1 * * *",
       "job": {
         "type": "runjs",
         "target": "https://ghproxy.com/https://raw.githubusercontent.com/GoodHolidays/Scripts/master/Task/youth.js"
