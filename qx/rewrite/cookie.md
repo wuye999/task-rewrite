@@ -2,6 +2,8 @@
 ## 中青阅读极速版，一天撸羊毛大概1.5-2元
 
 应用版本2.02
+https://github.com/wuye999/task-rewrite/tree/main/itunes
+爱思助手即可导入安装
 
  1.重写引用：
 ;到配置文件找到[rewrite_remote]贴代码：
