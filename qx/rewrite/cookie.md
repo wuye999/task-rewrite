@@ -1,3 +1,52 @@
+
+## 较全的库
+https://github.com/SallyU/fuidvsfjkd/tree/master/app_gift
+
+## OK语音
+10W分兑换100K币,可提现
+每日任务具体多少没算,反正都是挂着脚本,10w分可兑换100K币
+打开任务界面抓包 auth
+提现必须人脸实名,玩不玩随意阿。
+export okAuth=""
+export oksource ="android" //或ios
+也可以邀请人 ,A邀请B,A得三块,B邀请C,B得三块,(一个号一次),都发红包转给A然后凑100提现
+
+
+## 腾讯自选股
+BOXJS：https://raw.githubusercontent.com/CenBoMin/GithubSync/main/cenbomin.box.json
+运行脚本前请先下载app,登录。。。手动完成成长任务,有钱
+8.8打卡任务也手动做,建议只打卡4个成功即可,第5个基本拿不到
+微信小程序-腾讯自选股和app的日常任务是分开的,毛比较少,手动做吧！
+食用方法
+到[重写]-[引用],加入重写引用,根据以下提示获取cookie
+重写引用
+IOS APP：https://raw.githubusercontent.com/CenBoMin/GithubSync/main/TXSTOCK/txs_cookie.conf
+微信小程序：https://raw.githubusercontent.com/CenBoMin/GithubSync/main/TXSTOCK/txs_wxcookie.conf
+**** IOS APP ****
+taskheader：打开app-立即获取
+taskkey：点击左上头像-我的福利-点击获取
+userheader：点击左上头像-进入即获取
+userkey：点击左上头像-进入即获取
+
+提现cookie(cashheader):禁用获取cookie重写,重新打开app,点击左上头像-进入,等待我的福利下面活动加载成功,启用获取cookie重写,然后再点击第一个猜涨跌活动的页面就能够获取到了。。。
+
+签到cookie(signheader)：禁用获取cookie重写,重新打开app,点击左上头像-进入,等待右上角的金币数加载成功（进入提现页面）,启用获取cookie重写,点击进入提现的页面,会卡住加载几秒...过一会就能够获取到了
+
+signkey：禁用获取cookie重写,重新打开app,点击左上头像-进入,等待我的福利下面活动加载成功,启用获取cookie重写,然后再点击第一个猜涨跌活动的页面就能够获取到了。。。
+**** 微信小程序 ****
+！！！！！微信和app重写有冲突,不能两个同时开
+！！！！！必须先关闭app重写,在加入微信小程序重写https://raw.githubusercontent.com/CenBoMin/GithubSync/main/TXSTOCK/txs_wxcookie.conf,启用之后就可以去微信小程序做任务获取cookie
+
+微信任务cookie(wxtaskkey):进入微信小程序,点击资讯页面或者股票页面获取
+
+！！！！！获取完cookie,务必关闭重写引用
+脚本一天尽量运行1-3次,本脚本虽然加了防呆机制,但是还是尽量避免运行多次哦...
+且用且珍惜,更新无限期。
+
+手动做部分:
+ 模拟炒股周赛奖励：星期天登录模拟炒股(微信/app)
+ 周一抢牛活动：周一登录抢牛活动页面（app）
+
 ## 软件名：拼拼猪 （iOS/安卓都有）别充钱就行了 
 注册地址：必须要微信扫码，然后授权微信登入 
   获取CK ： 打开软件 → 养猪场 → 喂养  
