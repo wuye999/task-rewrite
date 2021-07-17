@@ -11,7 +11,7 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 ;阅读body获取
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zqbody.conf, tag=YouthGetBody, update-interval=86400, opt-parser=false, enabled=true
 中青看看赚&浏览赚
-https://raw.githubusercontent.com/wuye999/AutoSyncScript/ztxtop/rewrite-zqkkz.plugin, tag=中青看看赚&浏览赚cookie
+https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zqkkz.conf, tag=中青看看赚&浏览赚cookie
 
 
  2.食用方法：
