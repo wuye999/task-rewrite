@@ -9,7 +9,7 @@ https://github.com/wuye999/task-rewrite/tree/main/itunes
 ;到配置文件找到[rewrite_remote]贴代码：          
 
 ;签到cookie获取         
-https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zongqingck.conf, tag=YouthCookie
+https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zqck.conf, tag=YouthCookie
 
 阅读body获取            
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zqbody.conf, tag=YouthGetBody, update-interval=86400, opt-parser=false, enabled=true
@@ -38,12 +38,12 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 
 4.手动执行一次定时脚本-”中青阅读”,是不是运行正常
 
-5.获取更多的body,一天一般上限7200金币,建议获取200个body    
-启用中青看看赚&浏览赚cookie，关闭YouthGetBody
+5.获取更多的body,一天一般上限7200金币,建议获取200个body      
+5.9 启用中青看看赚&浏览赚cookie，关闭YouthGetBody    
 
-6. 浏览赚：任务中心-》看看赚-》顶部的浏览赚-》点任务开始抓到任务数据包即可
+6. 浏览赚：任务中心-》看看赚-》顶部的浏览赚-》点任务开始抓到任务数据包即可，所有任务都要点    
 
-7. 看看赚：任务中心-》看看赚-》点看看赚任务抓到任务数据包即可
+7. 看看赚：任务中心-》看看赚-》点看看赚任务抓到任务数据包即可，所有任务都要点    
 8. 任务中心尝试添加看看赚入口
 9. 已有阅读时长数据时，只保存大于1分钟的时长数据
 
