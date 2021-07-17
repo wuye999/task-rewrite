@@ -38,7 +38,8 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 
 4.手动执行一次定时脚本-”中青阅读”,是不是运行正常
 
-5.获取更多的body,一天一般上限7200金币,建议获取200个body
+5.获取更多的body,一天一般上限7200金币,建议获取200个body    
+启用中青看看赚&浏览赚cookie，关闭YouthGetBody
 
 6. 浏览赚：任务中心-》看看赚-》顶部的浏览赚-》点任务开始抓到任务数据包即可
 
