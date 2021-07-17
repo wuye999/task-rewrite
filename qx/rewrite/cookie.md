@@ -9,9 +9,11 @@ https://github.com/wuye999/task-rewrite/tree/main/itunes
 ;到配置文件找到[rewrite_remote]贴代码：          
 
 ;签到cookie获取         
-https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zongqingck.conf, tag=YouthCookie, update-interval=86400, opt-parser=false, enabled=true
-;阅读body获取          
+https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zongqingck.conf, tag=YouthCookie, update-interval=86400, opt-parser=false, enabled=true;
+
+阅读body获取            
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zqbody.conf, tag=YouthGetBody, update-interval=86400, opt-parser=false, enabled=true
+
 中青看看赚&浏览赚           
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/zqkkz.conf, tag=中青看看赚&浏览赚cookie
 
