@@ -41,8 +41,9 @@ hostname = mp.weixin.qq.com
 增加百度任务开关，Actions中Secrets为BAIDU_TASK，值填true或者false     
      
 百度极速获取Cookie:点击"任务"即可      
-     
-https:\/\/haokan\.baidu\.com\/activity\/h5\/vault\?productid=\d url script-request-header https://raw.githubusercontent.com/Sunert/Scripts/master/Task/baidu_speed.js
+ 
+ 百度极速版重写订阅    
+https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/baidujs.txt
          
 
 ## 聚看点签到任务
