@@ -7,6 +7,14 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 ## v2p订阅 
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/v2p/task/sngxprov2p.json    
 
+## 番茄看看前台
+
+添加重写：    
+^http://.+/yunonline/v1/task url script-response-body https://raw.githubusercontent.com/age174/-/main/fqkk_auto_read.js    
+^http://.+/(reada/jump|v1/jump|task/read)\? url script-response-header https://raw.githubusercontent.com/age174/-/main/fqkk_auto_read.js    
+^http://.+/mock/read url script-analyze-echo-response https://raw.githubusercontent.com/age174/-/main/fqkk_auto_read.js    
+^https?://mp\.weixin\.qq\.com/s.+?k=feizao url response-body </script> response-body setTimeout(()=>window.history.back(),10000); </script>    
+
 ## 百度极速版签到任务     
 使用脚本有黑号严重，请谨慎使用‼️     
     
