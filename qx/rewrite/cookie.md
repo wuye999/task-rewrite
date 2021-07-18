@@ -7,6 +7,12 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 ## v2p订阅 
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/v2p/task/sngxprov2p.json    
 
+## 快手极速版
+赞赏:作者快手邀请码`774010415`,农妇山泉 -> 有点咸，万分感谢;     
+本脚本仅适用于快手双版本签到，仅支持正式版获取多Cookie，建议使用正式版获取Cookie，点击视频页悬浮红包，或者进入设置，点击"积分兑好礼"即可;     
+本脚本仅在签到成功时通知;     
+
+
 ## 番茄看看前台
 
 番茄看看跳转微信文章真实阅读（疑似鉴权文章不自动返回），云扫码直接倒计时虚假阅读（疑似鉴权文章会跳转微信文章真实阅读，会自动返回（多前台跑云扫码时，鉴权文章标识数据会覆盖，可导致非疑似鉴权的文章也进入文章页面进行真实阅读）    
@@ -37,8 +43,7 @@ hostname = mp.weixin.qq.com
 百度极速获取Cookie:点击"任务"即可      
      
 https:\/\/haokan\.baidu\.com\/activity\/h5\/vault\?productid=\d url script-request-header https://raw.githubusercontent.com/Sunert/Scripts/master/Task/baidu_speed.js
-     
-支持BoxJs多账号，需手动填写，用&或者换行隔开     
+         
 
 ## 聚看点签到任务
 不支持Actions跑阅读任务，其他任务可运行
