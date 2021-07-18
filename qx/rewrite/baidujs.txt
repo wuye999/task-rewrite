@@ -1,3 +1,4 @@
+## 百度极速版
 hostname = haokan.baidu.com
 
 https:\/\/haokan\.baidu\.com\/activity\/h5\/vault\?productid=\d url script-request-header https://ghproxy.com/https://raw.githubusercontent.com/wuye999/AutoSyncScript/Sunert/Task/baidu_speed.js
