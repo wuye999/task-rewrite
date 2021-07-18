@@ -7,6 +7,9 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 ## v2p订阅 
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/v2p/task/sngxprov2p.json    
 
+## 特仑苏
+进入微信小程序，特仑苏向往的生活，点击奖品获取cookie.
+
 ## 快手极速版
 赞赏:作者快手邀请码`774010415`,农妇山泉 -> 有点咸，万分感谢;     
 本脚本仅适用于快手双版本签到，仅支持正式版获取多Cookie，建议使用正式版获取Cookie，点击视频页悬浮红包，或者进入设置，点击"积分兑好礼"即可;     
