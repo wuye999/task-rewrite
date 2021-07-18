@@ -7,6 +7,20 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 ## v2p订阅 
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/v2p/task/sngxprov2p.json    
 
+## 百度极速版签到任务     
+使用脚本有黑号严重，请谨慎使用‼️     
+    
+赞赏:作者百度极速邀请码`RW9ZSW 点击链接立得红包，最高100元！https://dwz.cn/Oilv4CJ1`,农妇山泉 -> 有点咸，万分感谢     
+    
+本脚本默认使用chavyleung大佬和Nobyda的贴吧ck，获取方法请看大佬仓库说明，内置自动提现，提现金额默认30元，当当前时间为早上6点且达到提现金额时仅运行提现任务，提现金额小于设置金额时继续运行其他任务。     
+     
+增加百度任务开关，Actions中Secrets为BAIDU_TASK，值填true或者false     
+     
+百度极速获取Cookie:点击"任务"即可      
+     
+https:\/\/haokan\.baidu\.com\/activity\/h5\/vault\?productid=\d url script-request-header https://raw.githubusercontent.com/Sunert/Scripts/master/Task/baidu_speed.js
+     
+支持BoxJs多账号，需手动填写，用&或者换行隔开     
 
 ## 聚看点签到任务
 不支持Actions跑阅读任务，其他任务可运行
