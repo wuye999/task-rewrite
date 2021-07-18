@@ -153,7 +153,8 @@ task: https://raw.githubusercontent.com/Wenmoux/monster/main/coolbuy/coolbuy.js
     "cookie": "这里面是你的cookie"    
 }  
 ```    
-export coolBuyStr={"type":"wx或者web 小程序就是wx","authorization":"只有小程序才需要这个","cookie":"这里面是你的cookie"}      
+填完之后去这里压缩并转义 https://m.sojson.com/yasuoyihang.html 结果如下     
+export coolBuyStr='{"type":"wx或者web 小程序就是wx","authorization":"只有小程序才需要这个","cookie":"这里面是你的cookie"}'       
 签到一个月要么抽奖换6.66微信红包,要么兑换100-50券或者一个手机壳       
 
     
