@@ -7,6 +7,9 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 ## v2p订阅 
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/v2p/task/sngxprov2p.json    
 
+## 滴滴果园
+进果园浇一次水
+
 ## 特仑苏
 进入微信小程序，特仑苏向往的生活，点击奖品获取cookie.
 
