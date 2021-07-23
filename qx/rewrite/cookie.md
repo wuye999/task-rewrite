@@ -7,6 +7,10 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 ## v2p订阅 
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/v2p/task/sngxprov2p.json    
 
+
+## 快手果园
+开启抓包工具,果园浇一次水,在抓包记录里搜water,复制请求头里的cookie,关键参数:client_key=xxxx;did==xxx;kuaishou.api_st=xxxx;ver=xxx;ud=xxxxx
+
 ## 滴滴果园
 进果园浇一次水
 
