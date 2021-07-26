@@ -7,6 +7,28 @@ https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/
 ## v2p订阅 
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/v2p/task/sngxprov2p.json    
 
+## 臻浓星球小程序
+>>点击  https://cdn.jsdelivr.net/gh/ziye888/JavaScript@main/Task/znxq.png  扫码进入    谢谢支持    
+进入小程序点击 我的 获取ck    
+
+##汽车之家
+目前只支持 汽车之家极速版1 .7 .1 以及1 .7 .1 以下的版本，也就是说 越狱可玩    
+符合的 可以点击 http://athm.cn/rUcSMrc  下载   或者 appstore 搜索 汽车之家极速版    
+
+定时 20或者30分钟或者1小时一次   收益1毛  绑定微信满0.3自动提现    
+
+4条ck     
+打开 点击我 活动 首页右上角时段 首页右上角时段翻倍   获取ck    
+
+## 燃旅
+点击 http://ran.lvfacn.com/pages/share/invit?to_user_id=232726 下载 或者appstore搜索 燃旅    
+定时 1小时一次   收益均0.5      
+登录必须插卡登录 提现必须绑定支付宝提现   实名需要 支付宝姓名与身份证号码匹配 不需要与手机号实名匹配，证件照随意(啥意思自己猜)    
+1 条ck 默认支持代理软件以及v2p获取ck    
+ 
+无法获取ck的自己抓包任意一条包含 access_token和user_token 的 url 即可    
+
+昵称自行修改，若包含 用户 二字，则脚本自动修改为手机号    
 
 ## 快手果园
 开启抓包工具,果园浇一次水,在抓包记录里搜water,复制请求头里的cookie,关键参数:client_key=xxxx;did==xxx;kuaishou.api_st=xxxx;ver=xxx;ud=xxxxx
