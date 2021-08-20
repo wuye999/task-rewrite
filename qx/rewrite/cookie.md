@@ -2,7 +2,7 @@
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/task/AllinOne.json    
 
 ## cookie重写订阅
-https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/task/AllinOne.json    
+https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/qx/rewrite/cookie.conf      
 
 ## v2p订阅 
 https://ghproxy.com/https://raw.githubusercontent.com/wuye999/task-rewrite/main/v2p/task/sngxprov2p.json    
