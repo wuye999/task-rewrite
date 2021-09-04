@@ -1,6 +1,6 @@
 #coding=utf-8
 """
-青龙里填写 环境变量 JD_WSCK  格式pin=xxx;wskey=xxxx;
+青龙里填写 环境变量 JD_WSCK  格式pin=xxx;wskey=xxxx
 """
 ## 填写你的signbody文件地址及文件名，默认读取 /ql/config/code/signbody1.txt
 ## 填写你的signbody文件地址及文件名，默认读取 /ql/config/code/signbody1.txt
@@ -173,7 +173,7 @@ if __name__ == '__main__':
         if i["status"] == 0:
             r = wstopt(i["value"])
             if r == "error":
-                print("api请求错误")
+                print("失败，请检查本地文件是否正确")
             else:
                 ptck = r
                 try:
