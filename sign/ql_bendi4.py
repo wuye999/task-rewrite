@@ -1,6 +1,6 @@
 #coding=utf-8
 """
-青龙里填写 环境变量 JD_WSCK  格式pin=xxx;wskey=xxxx
+青龙里填写 环境变量 JD_WSCK  格式pin=xxx;wskey=xxxx;
 """
 ## 填写你的signbody文件地址及文件名，默认读取 /ql/config/code/signbody1.txt
 ## 填写你的signbody文件地址及文件名，默认读取 /ql/config/code/signbody1.txt
