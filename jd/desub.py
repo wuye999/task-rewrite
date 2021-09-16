@@ -58,7 +58,6 @@ def strnum(c):
         c = eval('zhulima.'+c)
         return c
     except AttributeError:
-        print(f'助力码 {c} 不存在\n')
         c='zhan_wei_fu'
         return c
 
@@ -85,6 +84,7 @@ def logit(enurlnums):
                 encode=zinum(key,n)
                 decode=strnum(encode)
                 if decode=='zhan_wei_fu':
+                    print(f'第 {n} 个助力码不存在\n')
                     continue
                 if decode=='' or decode==' ':
                     print(f'第 {n} 个助力码为空\n')
