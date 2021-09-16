@@ -16,10 +16,8 @@ import time
 try:
     import requests
 except Exception as e:
-    logger.info(str(e) + "\n缺少requests模块, 请执行命令：pip3 install requests\n")
-    sys.exit(1)
-os.environ['no_proxy'] = '*'
-requests.packages.urllib3.disable_warnings()
+    print(e, "\n缺少requests 模块，请执行命令安装：pip3 install requests")
+    exit(3)
 
 def import2(a):
     global zhulima
@@ -106,6 +104,7 @@ def logit(enurlnums):
                     if state==1:
                         nonlocal g
                         if g==3:
+                            print('放弃挣扎')
                             return
                         g+=1
                         print(f'第 {g} 次尝试提交')
