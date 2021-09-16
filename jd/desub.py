@@ -12,7 +12,15 @@ import os
 import functools
 import imp
 import time
-import requests
+
+try:
+    import requests
+except Exception as e:
+    logger.info(str(e) + "\n缺少requests模块, 请执行命令：pip3 install requests\n")
+    sys.exit(1)
+os.environ['no_proxy'] = '*'
+requests.packages.urllib3.disable_warnings()
+
 def import2(a):
     global zhulima
     zhulima = imp.load_source('foobar',a)
@@ -109,11 +117,21 @@ def logit(enurlnums):
 def qingqiunum(r):
     time.sleep(1)
     url = r
-    res = requests.get(url)
-    #res = json.loads(res.text)
-    return res.text
+    try:
+        res = requests.get(url)
+        #res = json.loads(res.text)
+        return res.text
+    except:
+        res='Sever ERROR'
+        return res
+
+
 
 def deurlnum(res,biaozhi):
+    if 'Sever ERROR' in res:
+        print('【连接超时】')
+        state=1
+        return state
     if biaozhi=='he1':
         if 'Type ERROR' in res:
             print('he1助力码【提交类型无效】\n')
@@ -125,7 +143,7 @@ def deurlnum(res,biaozhi):
             print('he1助力码【提交成功】\n')
             state=0
         else:
-            print('he1【服务器连接错误】\n')
+            print('【服务器连接错误】\n')
             state=1
     elif biaozhi=='helloworld':
         if '0' in res:
