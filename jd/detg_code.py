@@ -151,7 +151,7 @@ def enurlnum2(tg_codes,value):
 
 if __name__=='__main__':
     ckkk=10
-    print('第一次在命令行运行 python3 /ql/scripts/detg_code.py 登陆tg获取密钥')
+    print('第一次在命令行运行 cd /ql/scripts && python3 detg_code.py 登陆tg获取密钥')
     try:
         client = TelegramClient('anon', api_id, api_hash)
         client.start()
