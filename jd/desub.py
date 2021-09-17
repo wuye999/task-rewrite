@@ -6,7 +6,8 @@ ckkk=18  ##cookie为18个
 # 青龙 or v4
 xitong="qinglong"
 
-
+# 在tg bot提交助力码后，要使用作者的脚本才能激活。
+# 运行本脚本后即可激活已提交的助力码，无需运行作者的脚本，
 
 import os
 import functools
