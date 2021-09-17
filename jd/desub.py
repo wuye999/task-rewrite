@@ -7,7 +7,8 @@ ckkk=18  ##cookie为18个
 xitong="qinglong"
 
 # 在tg bot提交助力码后，要使用作者的脚本才能激活。
-# 运行本脚本后即可激活已提交的助力码，无需运行作者的脚本，
+# 运行本脚本后即可激活已提交的助力码，无需运行作者的脚本。
+# 暂支持 he1 JD_ShareCode ，PasserbyBot。
 
 import os
 import functools
@@ -200,10 +201,23 @@ def enurlnum3(decode,value):
     else:
         return r 
 
+@logit
+def enurlnum4(decode,value):
+    biaozhi='Aaron-lv'
+    zlm_leixing_list={'MyFruit':'farm','MyBean':'bean','MyPet':'pet','MyDreamFactory':'jxfactory','MyJdFactory':'ddfactory','MySgmh':'sgmh','MyHealth':'health','MyCfd':'jxcfd'}
+    r=f'https://cdn.nz.lu/api/runTimes?activityId={value}&sharecode={decode}'
+    if decode==0:
+        return zlm_leixing_list,biaozhi
+    else:
+        return r
+
+
 
 if __name__=='__main__':
     run1num()
     enurlnum1(0,0)
     enurlnum2(0,0)
     enurlnum3(0,0)
+    #enurlnum4(0,0)
         
+
