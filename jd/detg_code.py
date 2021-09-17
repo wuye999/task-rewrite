@@ -11,6 +11,7 @@ xitong="qinglong"
 # 第一次在命令行进入脚本目录，运行python3 detg_code.py 登陆tg获取密钥
 # 屏幕显示Please enter your phone (or bot token）的时候，输入手机号获取验证码
 # 验证码会发送到tg
+# 科学上网
 
 import os
 import functools
