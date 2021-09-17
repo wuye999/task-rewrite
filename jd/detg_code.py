@@ -6,10 +6,10 @@ api_hash = '0123456789abcdef0123456789abcdef' #申请的TG API hash
 # 青龙 or v4
 xitong="qinglong"
 
-# 脚本为自动读取验证码，发送到tg bot上，暂支持 JD_ShareCode ，PasserbyBot。
+# 脚本为自动读取助力码，发送到tg bot上，暂支持 JD_ShareCode ，PasserbyBot。
 # 申请api_id 和 api_hash ，前往：https://my.telegram.org/auth?to=apps
-# 第一次在命令行进入脚本目录，运行python3 detg_code.py 登陆tg获取密钥
-# 屏幕显示Please enter your phone (or bot token）的时候，输入手机号获取验证码
+# 第一次在命令行运行 cd /ql/scripts && python3 detg_code.py
+# 屏幕显示Please enter your phone (or bot token）的时候，输入手机号获取验证码 例如： +86188788878888
 # 验证码会发送到tg
 # 科学上网
 
@@ -151,11 +151,14 @@ def enurlnum2(tg_codes,value):
 
 if __name__=='__main__':
     ckkk=10
-    client = TelegramClient('anon', api_id, api_hash)
-    client.start()
-    print('第一次在命令行进入脚本目录，运行python3 detg_code.py 登陆tg获取密钥')
-    #client.send_message('@JD_ShareCode_Bot', 'Hello, myself!')
-    #rint('测试向收藏夹发送 Hello, myself! 这段话')
+    print('第一次在命令行运行 python3 /ql/scripts/detg_code.py 登陆tg获取密钥')
+    try:
+        client = TelegramClient('anon', api_id, api_hash)
+        client.start()
+    except:
+        print('出错，请重试')
+    #client.send_message('me', 'Hello, myself!')
+    #print('测试向收藏夹发送 Hello, myself! 这段话')
     run1num()
     enurlnum1(0,0)
     enurlnum2(0,0)
