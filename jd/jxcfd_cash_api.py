@@ -52,7 +52,7 @@ def ask_api(d):
             'charset': 'UTF-8',
             'accept-encoding': 'br,gzip,deflate'
             }
-            print(f'\n----- 账号 {b} 请求 url {c} -----')
+            print(f'\n----- 账号 {c} 请求 url {b} -----')
             res = requests.post(url=url, headers=headers, verify=False)
             print(res.text)
             time.sleep(ask_sleep)
