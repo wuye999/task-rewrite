@@ -6,58 +6,74 @@ import json
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-## 抢券，但不知道抢的哪个券
-cycles=2  #循环2遍
+## 京喜财富岛抢红包
+cycles=3  #循环3遍
 ask_sleep=0.1  #请求间隔为0.1秒
-cksum=3   #ck总数
+cksum=1   #ck总数
 ck1=''
-ck2=''
-ck3=''
 
-urlnum=2   #api总数
-url1='https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%22vN4YuYXS1mPse7yeVPRq4TNvCMR%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key=F3A09C1A5D4635C9AA07C28F0E43FA7F69548EE87DDF7EB6D2DBFA2006AB8D9188592FDAE04311D2D7D6D0F574FF2649_babel,roleId=F9A3ADE8EBE3CB76B48C7A29EFE2B2BF_babel%22%7D&client=wh5'
-url2='https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%22vN4YuYXS1mPse7yeVPRq4TNvCMR%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key=FDACB5EC256BA64B342D79618485D043A354E81B75D634DE1992390C701E70D51DAE2AB811FD3406E484E1DBB1FBE3D0_babel,roleId=7014304DFB7211DD1ED99AF4D8360DCD_babel%22%7D&client=wh5'
 
-ua='okhttp/3.12.1;jdmall;apple;version/9.4.0;build/88830;screen/1440x3007;os/11;network/wifi'
+ddwPaperMoney=188  ##需要兑换的金额
 
+ua='jdpingou;android;4.11.0;9;8dfb03d2ae0d7d5e;network/wifi;model/Redmi Note 7;appBuild/17304;partner/pingou_update1;;session/47;aid/8dfb03d2ae0d7d5e;oaid/697e77ebe3fde164;pap/JA2019_3111789;brand/Xiaomi;eu/8346662603334623;fv/1656034673465356;Mozilla/5.0 (Linux; Android 9; Redmi Note 7 Build/PKQ1.180904.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.3987.99 Mobile Safari/537.36'
+
+## 组合cookie
 cks=[]
 for n in range(1,cksum+1):
     a='ck'+str(n)
     a = eval(a)
     cks.append(a)
 
-urls=[]
-for n in range(1,urlnum+1):
-    a='url'+str(n)
-    a = eval(a)
-    urls.append(a)
-
 d=0
 def ask_api(d):
-
     if d==cycles:
         print('\n结束')
         return
-    print(f'\n\n ----- 第 {d+1} 次循环 ----- ') 
-    b=0
-    for url in urls:    
-        b+=1
-        c=0
-        for ck in cks:
-            c+=1
-            headers = {
+    print(f'\n\n ----- 第 {d+1} 次循环 ----- ')   
+    c=0
+    for ck in cks:
+        c+=1
+        ## 计算时间戳
+        timestamp1=timestamps()
+        timestamp2=timestamps()
+        timestamp3=timestamps()
+        ## 计算红包金额
+        global ddwPaperMoney
+        if isinstance(ddwPaperMoney,int):
+            ddwPaperMoney=int(ddwPaperMoney*100)
+        else:
+            ddwPaperMoney=int(ddwPaperMoney*1000)
+        ## 合成api链接
+        url='https://m.jingxi.com/jxbfd/user/ExchangePrize?strZone=jxbfd&bizCode=jxbfd&source=jxbfd&dwEnv=7'+'&_cfd_t='+str(timestamp1)+'&dwType=3&dwLvl=12'+'&ddwPaperMoney='+str(ddwPaperMoney)+'&strPoolName=jxcfd2_exchange_hb_202108'+'&strPgtimestamp='+str(timestamp2)+'&_stk=_cfd_t%2CbizCode%2CddwPaperMoney%2CdwEnv%2CdwLvl%2CdwType%2Cptag%2Csource%2CstrPgUUNum%2CstrPgtimestamp%2CstrPhoneID%2CstrPoolName%2CstrZone&_ste=1&h5st=20210918080859860%3B5615124578207162%3B10032%3Btk01w993e1c4430nI8KbYO%2FiTXGdSJhi39Vn6euL%2FcNimZ3MvYUJfoPjZfwp348Pi8xcFXXf4bodbhvLTahfCTo8j%2BFp%3Be216790d9d49e43fc2db67dbc6a6202191e75bbde97156d12cb6a8cf11c11ead'+'&_='+str(timestamp3)+'&sceneval=2'
+        headers = {
+            'Host': 'm.jingxi.com',
+            'sec-fetch-mode': 'no-cors',
+            'user-agent': ua,
+            'accept': '*/*',
+            'x-requested-with': 'com.jd.pingou',
+            'sec-fetch-site': 'same-site',
+            'referer': 'https://st.jingxi.com/fortune_island/index2.html?ptag=7155.9.47&sceneval=2',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
             'cookie': ck,
-            'User-Agent': ua,
-            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'charset': 'UTF-8',
-            'accept-encoding': 'br,gzip,deflate'
-            }
-            print(f'\n----- 账号 {c} 请求 url {b} -----')
-            res = requests.post(url=url, headers=headers, verify=False)
-            print(res.text)
-            time.sleep(ask_sleep)
+        }
+        print(f'\n----- 账号 {c} 开始-----')
+        ## 处理请求
+        res = requests.post(url=url, headers=headers, verify=False)
+        print(res.text)
+        ## 延迟
+        time.sleep(ask_sleep)
     d+=1
     return ask_api(d)
 
+## 通过把秒转换毫秒的方法获得13位的时间戳
+def timestamps():
+    timestamp = int(round(time.time() * 1000))
+    time.sleep(0.02)
+    return timestamp
+
+
 if __name__=='__main__':
    ask_api(d) 
+
+
