@@ -157,6 +157,7 @@ if __name__=='__main__':
         client.start()
     except:
         print('出错，请重试')
+        raise
     #client.send_message('me', 'Hello, myself!')
     #print('测试向收藏夹发送 Hello, myself! 这段话')
     run1num()
