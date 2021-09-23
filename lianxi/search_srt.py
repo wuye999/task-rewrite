@@ -4,7 +4,7 @@ import os
 search_str = 'Fruit'
 search_path = '/ql/log'
 
-class Search_files():
+class Search_files(object):
     def __init__(self, search_str, search_path):
         self.search_str = search_str
         self.search_path = search_path
