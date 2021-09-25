@@ -10,7 +10,7 @@ import functools
 import imp
 import time
 import re
-from multiprocessing import Pool
+from  multiprocessing import Pool
 
 try:
     import requests
@@ -177,7 +177,7 @@ class Bulk_request(object):
     ## 判断请求结果
     def processing_request_result(self,res):
         if 'Sever ERROR' in res:
-            print(f'{self.biaozhi}_{self.value}：连接超时')
+            print(f'{self.biaozhi}_{self.value}：连接超时\n')
             state=1
             return state
         if self.biaozhi == 'he1pu':
@@ -247,8 +247,8 @@ class He1pu_cfd_urls(Composite_urls):
         code_list=self.generate_str_list()
         data_pack2=functools.partial(self.data_pack, value=self.value)
         if len(code_list)!=self.pin_list:
-            print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！\n')
-            print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！\n')
+            print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！')
+            print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！')
             print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！\n')
         url_list=[]
         for code in code_list:
@@ -303,8 +303,8 @@ class Helloworld_cfd_urls(Composite_urls):
         bean_code_list=self.generate_str_list('MyBean')
         data_pack2=functools.partial(self.data_pack, value=self.value)
         if len(jxcfd_code_list)!=self.pin_list:
-            print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！\n')
-            print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！\n')
+            print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！')
+            print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！')
             print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！\n')
         url_list=[]
         for jxcfd_code in jxcfd_code_list:
@@ -367,7 +367,7 @@ class Helloworld_cfd_request(Bulk_request):
 ## he1pu数据
 def he1pu(decode, *, value):
     biaozhi = 'he1pu'
-    correspond_data={'MyFruit':'farm','MyBean':'bean','MyPet':'pet','MyDreamFactory':'jxfactory','MyJdFactory':'ddfactory','MySgmh':'sgmh','MyHealth':'health','MyCfd':'jxcfd'}
+    correspond_data={'MyFruit':'farm','MyBean':'bean','MyPet':'pet','MyDreamFactory':'jxfactory','MyJdFactory':'ddfactory','MySgmh':'sgmh','MyHealth':'health'}
     r=f'http://www.helpu.cf/jdcodes/submit.php?code={decode}&type={value}'
     if decode==0:
         return correspond_data, biaozhi
@@ -443,19 +443,17 @@ def helloworld_cfd_main_run(data_pack, ckkk, pin_list, import_prefix='import_1.c
         Helloworld_cfd_request(url_list, code_list, value, biaozhi).main_run() 
  
 
-
 if __name__=='__main__':
-    p = Pool(3)
     path,pin_list,ckkk=Judge_env().main_run()
     import_1 = Import_files(path)
     import_1.main_run()
-    p.apply_async(main_run(he1pu, ckkk))   ## 创建he1pu提交任务
-    p.apply_async(main_run(helloworld, ckkk))  ## 创建helloworld提交任务
-    p.apply_async(main_run(passerbyBot, ckkk))   ## 创建passerbyBot提交任务
-    p.apply_async(he1pu_cfd_main_run(he1pu_cfd, ckkk, pin_list))   ## 创建he1pu_cfd提交任务
-    p.apply_async(helloworld_cfd_main_run(helloworld_cfd, ckkk, pin_list))   ## 创建helloworld_cfd提交任务
-    p.close()
-    p.join()
+    pool = Pool(3)
+    pool.apply_async(func=main_run,args=(he1pu, ckkk))   ## 创建he1pu提交任务
+    pool.apply_async(func=main_run,args=(helloworld, ckkk))  ## 创建helloworld提交任务
+    pool.apply_async(func=main_run,args=(passerbyBot, ckkk))   ## 创建passerbyBot提交任务
+    pool.apply_async(func=he1pu_cfd_main_run,args=(he1pu_cfd, ckkk, pin_list))   ## 创建he1pu_cfd提交任务
+    pool.apply_async(func=helloworld_cfd_main_run,args=(helloworld_cfd, ckkk, pin_list))   ## 创建helloworld_cfd提交任务
+    pool.close()
+    pool.join()
     print('\nwuye9999')
     
-
