@@ -246,7 +246,7 @@ class He1pu_cfd_urls(Composite_urls):
     def main_run(self):
         code_list=self.generate_str_list()
         data_pack2=functools.partial(self.data_pack, value=self.value)
-        if len(code_list)!=self.pin_list:
+        if len(code_list)!=len(self.pin_list):
             print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！')
             print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！')
             print(f'{self.biaozhi}_{self.value}：助力码数量与从pin数量不一致，上传可能会出现错误！！！\n')
