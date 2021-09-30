@@ -42,8 +42,8 @@ class Judge_env(object):
 
 # 生成助力码合集
 class Import_files(object):
-    def __init__(self, path, match_list,name_list=[]):
-        self.path = path
+    def __init__(self, path_list, match_list,name_list=[]):
+        self.path_list = path_list
         self.match_list=sorted(match_list)
         if len(name_list)==0:
             self.name_list=self.match_list
@@ -58,11 +58,12 @@ class Import_files(object):
         else:
             files = [self.path+'/'+x for x in os.listdir(self.path) if os.path.isfile(self.path+'/'+x)]
             files = sorted(files, reverse=True)
-            files = [files[0]]
+            files = [files[0]]*len(self.match_list)
         return sorted(files)
 
     ## 将list里的文件全部读取
-    def main_run(self):     
+    def main_run(self):
+        self.path= self.path_list
         files_list = self.file_list()
         match_files_dict=dict(zip(self.match_list,files_list))
         for match,files in match_files_dict.items():
@@ -71,7 +72,7 @@ class Import_files(object):
     # 根据self.match_list中的关键字读取文件中的助力码
     def read_code(self,match,files):
         a=[]
-        n=1
+        n=0
         with open(files, 'r') as f:
             for line in f.readlines():
                 try:
@@ -80,16 +81,24 @@ class Import_files(object):
                     n+=1
                 except:
                     pass
-                if n==ckkk+1:
+                if n==ckkk:
                     break
         self.codes[self.name_list[self.match_list.index(match)]]=a
 
 # 生成助力码合集
 class Look_log_code(Import_files):
+    ## 将list里的文件全部读取
+    def main_run(self):
+        n=0
+        for self.path in self.path_list:
+            files_list = self.file_list()
+            self.read_code(files_list[0],self.match_list[n],self.name_list[n])
+            n+=1
+
     # 根据self.match_list中的关键字读取文件中的助力码
-    def read_code(self,match,files):
+    def read_code(self,files,match,name):
         a=[]
-        n=1
+        n=0
         with open(files, 'r') as f:
             for line in f.readlines():
                 try:
@@ -98,9 +107,9 @@ class Look_log_code(Import_files):
                     n+=1
                 except:
                     pass
-                if n==ckkk+1:
+                if n==ckkk:
                     break
-        self.codes[self.name_list[self.match_list.index(match)]]=a   
+        self.codes[name]=a  
 
 # 合成url
 class Composite_urls(object):
@@ -369,9 +378,10 @@ def he1pu_cfd_main_run(data_pack, import_prefix='law_code'):
 if __name__=='__main__':
     path,pin_list,ckkk=Judge_env().main_run()
     match_list=['Health', 'MoneyTree', 'JdFactory', 'DreamFactory', 'Cfd', 'Carni', 'TokenJxnc', 'Jxnc', 'Joy', 'City', 'Bean', 'Cash', 'Pet', 'BookShop', 'Jdzz', 'Sgmh', 'Fruit']
+    path='/ql/log/code'
     law_code=Import_files(path,match_list)
     law_code.main_run()
-    log_code=Look_log_code('/ql/log/shufflewzc_faker2_jd_mohe',['5G超级盲盒'],['mohe'])
+    log_code=Look_log_code(['/ql/log/shufflewzc_faker2_jd_mohe'],['5G超级盲盒'],['mohe'])
     log_code.main_run()
     pool = Pool(3)
     pool.apply_async(func=main_run,args=(passerbyBot,))   ## 创建passerbyBot激活任务
