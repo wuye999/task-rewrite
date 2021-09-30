@@ -208,6 +208,7 @@ class Bulk_request(object):
         self.url_list = url_list
         self.biaozhi = biaozhi
         self.g=0
+        self.log=[]
     
     ##批量请求流程
     def main_run(self):
@@ -216,13 +217,18 @@ class Bulk_request(object):
             self.request_process(url)
 
     ## 单个url请求，判断结果，是否重试的流程
-    def request_process(self,url):  
+    def request_process(self,url): 
+        self.log=[] 
         code,self.value,pin=self.regular_extract(url)
         biaozhi=self.biaozhi.split('_')[0]
-        print(f'{biaozhi}_{self.value}: 开始上报 {code} {pin}')
+        self.log.append(f'{biaozhi}_{self.value}: 开始上报 {code} {pin}')
         res=self.single_request(url)
         state=self.processing_request_result(res, biaozhi)
         self.judge_Retry(state,url) 
+        a=''
+        for i in self.log:
+            a=a+'\n'+i
+        print(a)
 
     # 正则提取信息
     def regular_extract(self,url):
@@ -261,48 +267,47 @@ class Bulk_request(object):
     # 判断请求结果
     def processing_request_result(self,res, biaozhi):
         if 'Sever ERROR' in res:
-            print(f'{biaozhi}_{self.value}: 连接超时\n')
+            self.log.append(f'{biaozhi}_{self.value}: 连接超时\n')
             state=1
             return state
         if biaozhi == 'he1pu':
             if 'Type ERROR' in res:
-                print(f'{biaozhi}_{self.value}: 提交类型无效\n')
+                self.log.append(f'{biaozhi}_{self.value}: 提交类型无效\n')
                 state=1
             elif '\"code\":300' in res:
-                print(f'{biaozhi}_{self.value}: 重复提交\n')
+                self.log.append(f'{biaozhi}_{self.value}: 重复提交\n')
                 state=0
             elif '\"code\":200' in res:
-                print(f'{biaozhi}_{self.value}: 提交成功\n')
+                self.log.append(f'{biaozhi}_{self.value}: 提交成功\n')
                 state=0
             else:
-                print(f'{biaozhi}_{self.value}: 服务器连接错误\n')
+                self.log.append(f'{biaozhi}_{self.value}: 服务器连接错误\n')
                 state=1
         elif biaozhi=='helloworld':
             if '0' in res:
-                print(f'{biaozhi}_{self.value}: 请在tg机器人处提交助力码后再激活\n')
+                self.log.append(f'{biaozhi}_{self.value}: 请在tg机器人处提交助力码后再激活\n')
                 state=0
             elif '1' in res:
-                print(f'{biaozhi}_{self.value}: 激活成功\n')
+                self.log.append(f'{biaozhi}_{self.value}: 激活成功\n')
                 state=0
             else:
-                print(f'{biaozhi}_{self.value}: 服务器连接错误\n')
+                self.log.append(f'{biaozhi}_{self.value}: 服务器连接错误\n')
                 state=1
         elif biaozhi=='passerbyBot':
             if 'Cannot' in res:
-                print(f'{biaozhi}_{self.value}: 提交类型无效\n')
+                self.log.append(f'{biaozhi}_{self.value}: 提交类型无效\n')
                 state=1
             elif '激活成功' in res:
-                print(f'{biaozhi}_{self.value}: 激活成功\n')
+                self.log.append(f'{biaozhi}_{self.value}: 激活成功\n')
                 state=0
             elif '激活失败' in res:
-                print(f'{biaozhi}_{self.value}: 请在tg机器人处提交助力码后再激活\n')
+                self.log.append(f'{biaozhi}_{self.value}: 请在tg机器人处提交助力码后再激活\n')
                 state=0
             else:
-                print(f'{biaozhi}_{self.value}: 服务器连接错误\n')
+                self.log.append(f'{biaozhi}_{self.value}: 服务器连接错误\n')
                 state=1
         else:
-            print(res)
-            print('\n')
+            self.log.append(res+'\n')
             state=0
         return state  
 
@@ -310,10 +315,10 @@ class Bulk_request(object):
     def judge_Retry(self,state,url):
         if state == 1:
             if self.g == 3:
-                print(f'{self.biaozhi}_{self.value}: 放弃挣扎')
+                self.log.append(f'{self.biaozhi}_{self.value}: 放弃挣扎')
                 return
             self.g += 1
-            print(f'{self.biaozhi}_{self.value}: 第 {self.g} 次尝试提交')
+            self.log.append(f'{self.biaozhi}_{self.value}: 第 {self.g} 次尝试提交')
             time.sleep(0.5)
             return self.request_process(url)
 
