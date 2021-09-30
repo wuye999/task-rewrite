@@ -4,6 +4,7 @@
 
 import os
 import logging
+logging.basicConfig(level=logging.INFO)
 import functools
 import time
 import re
@@ -13,7 +14,6 @@ try:
 except Exception as e:
     logging.info(e, "\n缺少requests 模块，请执行命令安装: pip3 install requests")
     exit(3)
-logging.basicConfig(level=logging.INFO)
 
 ## 判断运行环境
 class Judge_env(object):
@@ -176,17 +176,6 @@ class Helloworld_cfd_urls(Composite_urls):
                 url_list.append(url)
         return url_list,self.biaozhi
 
-
-## he1pu_cfd控制函数
-def helloworld_cfd_main_run(data_pack, import_prefix='law_code'):
-    url_list,biaozhi=Helloworld_cfd_urls(data_pack, import_prefix).main_run()
-    Bulk_request(url_list, biaozhi).main_run()
-
-## he1pu_cfd控制函数
-def he1pu_cfd_main_run(data_pack, import_prefix='law_code'):
-    url_list,biaozhi=He1pu_cfd_urls(data_pack, import_prefix).main_run()
-    Bulk_request(url_list, biaozhi).main_run()
-
 ## 将url_list进行批量请求，判断结果
 class Bulk_request(object):
     def __init__(self, url_list, biaozhi):
@@ -206,7 +195,7 @@ class Bulk_request(object):
         biaozhi=self.biaozhi.split('_')[0]
         print(f'{biaozhi}_{self.value}: 开始上报 {code} {pin}')
         res=self.single_request(url)
-        state=self.processing_request_result(res)
+        state=self.processing_request_result(res, biaozhi)
         self.judge_Retry(state,url) 
 
     # 正则提取信息
@@ -244,46 +233,46 @@ class Bulk_request(object):
             return res
 
     # 判断请求结果
-    def processing_request_result(self,res):
+    def processing_request_result(self,res, biaozhi):
         if 'Sever ERROR' in res:
-            print(f'{self.biaozhi}_{self.value}: 连接超时\n')
+            print(f'{biaozhi}_{self.value}: 连接超时\n')
             state=1
             return state
-        if self.biaozhi == 'he1pu' or self.biaozhi == 'he1pu_cfd':
+        if biaozhi == 'he1pu':
             if 'Type ERROR' in res:
-                print(f'{self.biaozhi}_{self.value}: 提交类型无效\n')
+                print(f'{biaozhi}_{self.value}: 提交类型无效\n')
                 state=1
             elif '\"code\":300' in res:
-                print(f'{self.biaozhi}_{self.value}: 重复提交\n')
+                print(f'{biaozhi}_{self.value}: 重复提交\n')
                 state=0
             elif '\"code\":200' in res:
-                print(f'{self.biaozhi}_{self.value}: 提交成功\n')
+                print(f'{biaozhi}_{self.value}: 提交成功\n')
                 state=0
             else:
-                print(f'{self.biaozhi}_{self.value}: 服务器连接错误\n')
+                print(f'{biaozhi}_{self.value}: 服务器连接错误\n')
                 state=1
-        elif self.biaozhi=='helloworld' or self.biaozhi=='helloworld_cfd':
+        elif biaozhi=='helloworld':
             if '0' in res:
-                print(f'{self.biaozhi}_{self.value}: 请在tg机器人处提交助力码后再激活\n')
+                print(f'{biaozhi}_{self.value}: 请在tg机器人处提交助力码后再激活\n')
                 state=0
             elif '1' in res:
-                print(f'{self.biaozhi}_{self.value}: 激活成功\n')
+                print(f'{biaozhi}_{self.value}: 激活成功\n')
                 state=0
             else:
-                print(f'{self.biaozhi}_{self.value}: 服务器连接错误\n')
+                print(f'{biaozhi}_{self.value}: 服务器连接错误\n')
                 state=1
-        elif self.biaozhi=='passerbyBot':
+        elif biaozhi=='passerbyBot':
             if 'Cannot' in res:
-                print(f'{self.biaozhi}_{self.value}: 提交类型无效\n')
+                print(f'{biaozhi}_{self.value}: 提交类型无效\n')
                 state=1
             elif '激活成功' in res:
-                print(f'{self.biaozhi}_{self.value}: 激活成功\n')
+                print(f'{biaozhi}_{self.value}: 激活成功\n')
                 state=0
             elif '激活失败' in res:
-                print(f'{self.biaozhi}_{self.value}: 请在tg机器人处提交助力码后再激活\n')
+                print(f'{biaozhi}_{self.value}: 请在tg机器人处提交助力码后再激活\n')
                 state=0
             else:
-                print(f'{self.biaozhi}_{self.value}: 服务器连接错误\n')
+                print(f'{biaozhi}_{self.value}: 服务器连接错误\n')
                 state=1
         else:
             print(res)
@@ -365,6 +354,16 @@ def he1pu_mohe(decode, *, pin=0, value=0):
 
 def main_run(data_pack,import_prefix='law_code'):
     url_list,biaozhi=Composite_urls(data_pack, import_prefix).main_run()
+    Bulk_request(url_list, biaozhi).main_run()
+
+## he1pu_cfd master函数
+def helloworld_cfd_main_run(data_pack, import_prefix='law_code'):
+    url_list,biaozhi=Helloworld_cfd_urls(data_pack, import_prefix).main_run()
+    Bulk_request(url_list, biaozhi).main_run()
+
+## he1pu_cfd master函数
+def he1pu_cfd_main_run(data_pack, import_prefix='law_code'):
+    url_list,biaozhi=He1pu_cfd_urls(data_pack, import_prefix).main_run()
     Bulk_request(url_list, biaozhi).main_run()
 
 if __name__=='__main__':
