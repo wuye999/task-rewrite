@@ -35,20 +35,35 @@ class Judge_env(object):
     ## 批量提取pin,输出ckkk,path,pin_list
     def main_run(self):
         path=self.getcodefile()
-        cookie_list=os.environ["JD_COOKIE"].split('&')       # 获取cookie_list的合集
+        if path != '/jd/log/jcode':
+            cookie_list=os.environ["JD_COOKIE"].split('&')       # 获取cookie_list的合集
+        else:
+            cookie_list=self.v4_cookie()      # 获取cookie_list的合集
         pin_list=[re.match(r'.+pin=(.+)\;', cookie).group(1) for cookie in cookie_list]  # 提取cookie中的pin
         ckkk=len(cookie_list)      
         return path,pin_list,ckkk
+
+    def v4_cookie(self):
+        a=[]
+        with open('/jd/config/config.sh', 'r') as f:
+            for line in f.readlines():
+                try:
+                    regular=re.match(r'Cookie'+'.*?=\"(.*?)\"', line).group(1)
+                    a.append(regular)
+                except:
+                    pass
+        return a
+
 
 # 生成助力码合集
 class Import_files(object):
     def __init__(self, path_list, match_list,name_list=[]):
         self.path_list = path_list
-        self.match_list=sorted(match_list)
+        self.match_list=match_list
         if len(name_list)==0:
             self.name_list=self.match_list
         else:
-            self.name_list=sorted(name_list)
+            self.name_list=name_list
         self.codes={}
 
     ## 需要导入的文件组合成list
@@ -63,6 +78,8 @@ class Import_files(object):
 
     ## 将list里的文件全部读取
     def main_run(self):
+        self.match_list=sorted(self.match_list)
+        self.name_list=sorted(self.name_list)
         self.path= self.path_list
         files_list = self.file_list()
         match_files_dict=dict(zip(self.match_list,files_list))
