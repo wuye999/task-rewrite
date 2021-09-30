@@ -378,7 +378,6 @@ def he1pu_cfd_main_run(data_pack, import_prefix='law_code'):
 if __name__=='__main__':
     path,pin_list,ckkk=Judge_env().main_run()
     match_list=['Health', 'MoneyTree', 'JdFactory', 'DreamFactory', 'Cfd', 'Carni', 'TokenJxnc', 'Jxnc', 'Joy', 'City', 'Bean', 'Cash', 'Pet', 'BookShop', 'Jdzz', 'Sgmh', 'Fruit']
-    path='/ql/log/code'
     law_code=Import_files(path,match_list)
     law_code.main_run()
     log_code=Look_log_code(['/ql/log/shufflewzc_faker2_jd_mohe'],['5G超级盲盒'],['mohe'])
