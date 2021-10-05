@@ -3,8 +3,6 @@
 # 暂支持 he1pu, helloworld ，PasserbyBot。
 
 import os
-import logging
-logging.basicConfig(level=logging.INFO)
 import functools
 import time
 import re
@@ -12,25 +10,24 @@ from  multiprocessing import Pool
 try:
     import requests
 except Exception as e:
-    logging.info(e, "\n缺少requests 模块，请执行命令安装: pip3 install requests")
+    print(e, "\n缺少requests 模块，请执行命令安装: pip3 install requests")
     exit(3)
 
 ## 判断运行环境
 class Judge_env(object):
-    ## 判断助力码文件位置
+    ## 判断文件位置
     def getcodefile(self):
-        if os.path.exists('/ql/log/.ShareCode'):
-            logging.info("当前环境为新版code.sh\n")
-            return '/ql/log/.ShareCode'
-        elif os.path.exists('/ql/log/code'):
-            logging.info("当前环境为旧版code.sh\n")
-            return '/ql/log/code'
-        elif os.path.exists('/jd/log/jcode'):
-            logging.info("当前环境V4\n")
+        if os.path.abspath('.')=='/ql/scripts':
+            print("当前环境青龙\n")
+            if os.path.exists('/ql/log/.ShareCode'):
+                return '/ql/log/.ShareCode'
+            else:
+                return '/ql/log/code'
+        elif '/jd' in os.path.abspath('.'):
+            print("当前环境V4\n")
             return '/jd/log/jcode'
         else:
-            logging.info('暂不支持 青龙，v4 以外的环境\n')
-            exit(0)
+            print('自行配置path,cookie\n')
 
     ## 批量提取pin,输出ckkk,path,pin_list
     def main_run(self):
@@ -45,130 +42,128 @@ class Judge_env(object):
 
     def v4_cookie(self):
         a=[]
+        re_match=re.compile(r'Cookie'+'.*?=\"(.*?)\"')
         with open('/jd/config/config.sh', 'r') as f:
             for line in f.readlines():
                 try:
-                    regular=re.match(r'Cookie'+'.*?=\"(.*?)\"', line).group(1)
-                    a.append(regular)
+                    b=re_match.match(line).group(1)
+                    a.append(b)
                 except:
                     pass
         return a
 
 
-# 生成助力码合集
+# 生成path_list合集
 class Import_files(object):
-    def __init__(self, path_list, match_list,name_list=[]):
-        self.path_list = path_list
-        self.match_list=match_list
-        if len(name_list)==0:
-            self.name_list=self.match_list
+    def __init__(self,path):
+        self.path=path
+    
+    def path_list(self):
+        name_list=['Health', 'MoneyTree', 'JdFactory', 'DreamFactory', 'Cfd', 'Carni', 'TokenJxnc', 'Jxnc', 'Joy', 'City', 'Bean', 'Cash', 'Pet', 'BookShop', 'Jdzz', 'Sgmh', 'Fruit']
+        match_list=[r'.*?'+name+r'.*?\'(.*?)\'' for name in name_list]
+        if self.path=='/ql/log/.ShareCode':   
+            path_list=[self.path+'/'+name+'.log' for name in name_list]
         else:
-            self.name_list=name_list
+            path_list = [self.path+'/'+x for x in os.listdir(self.path) if os.path.isfile(self.path+'/'+x)]
+            path_list = sorted(path_list, reverse=True)
+            path_list = [path_list[0]]*len(name_list)
+        return name_list,match_list,path_list
+
+
+# 自定义正则匹配类
+class Look_log_code(object):
+    def __init__(self, name_list=0, match_list=0, path_list=0, stop_n=0):
+        self.name_list=name_list 
+        self.match_list=match_list      
+        self.path_list = path_list
+        self.stop_n=stop_n
         self.codes={}
+
+    def set_var(self, name_list, match_list, path_list, stop_n):
+        self.name_list=name_list 
+        self.match_list=match_list      
+        self.path_list = path_list
+        self.stop_n=stop_n
+        self.main_run()
+        if len(name_list)==1:
+            return self.codes[name_list[0]][0]
 
     ## 需要导入的文件组合成list
     def file_list(self):
-        if self.path == '/ql/log/.ShareCode':
-            files = [self.path+'/'+x for x in os.listdir(self.path) if os.path.isfile(self.path+'/'+x)]
-        else:
+        if os.path.isdir(self.path):
             files = [self.path+'/'+x for x in os.listdir(self.path) if os.path.isfile(self.path+'/'+x)]
             files = sorted(files, reverse=True)
-            files = [files[0]]*len(self.match_list)
-        return sorted(files)
+            files = files[0]
+        elif os.path.isfile(self.path):
+            files=self.path
+        else:
+            print(f'文件夹或日志 {self.path} 不存在\n')
+            files=False
+        return files
 
     ## 将list里的文件全部读取
     def main_run(self):
-        self.match_list=sorted(self.match_list)
-        self.name_list=sorted(self.name_list)
-        self.path= self.path_list
-        files_list = self.file_list()
-        match_files_dict=dict(zip(self.match_list,files_list))
-        for match,files in match_files_dict.items():
-            self.read_code(match,files)
-        
-    # 根据self.match_list中的关键字读取文件中的助力码
-    def read_code(self,match,files):
-        a=[]
-        n=0
-        with open(files, 'r') as f:
-            for line in f.readlines():
-                try:
-                    regular=re.match(r'.*?'+match+'.*?\'(.*?)\'', line).group(1)
-                    a.append(regular)
-                    n+=1
-                except:
-                    pass
-                if n==ckkk:
-                    break
-        self.codes[self.name_list[self.match_list.index(match)]]=a
-
-# 生成助力码合集
-class Look_log_code(Import_files):
-    ## 将list里的文件全部读取
-    def main_run(self):
-        n=0
-        for self.path in self.path_list:
-            files_list = self.file_list()
-            self.read_code(files_list[0],self.match_list[n],self.name_list[n])
-            n+=1
+        for e,self.path in enumerate(self.path_list):
+            files = self.file_list()
+            if files:
+                self.read_code(files,self.match_list[e],self.name_list[e])
+            else:
+               self.codes[self.name_list[e]]=' '
 
     # 根据self.match_list中的关键字读取文件中的助力码
     def read_code(self,files,match,name):
         a=[]
         n=0
+        re_match=re.compile(match)
         with open(files, 'r') as f:
             for line in f.readlines():
-                try:
-                    regular=re.match(r'.*?'+match+'.*?\】(.*?)\n', line).group(1)
-                    a.append(regular)
+                try: 
+                    b=re_match.match(line).group(1)
+                    a.append(b)
                     n+=1
                 except:
                     pass
-                if n==ckkk:
+                if n==self.stop_n:
                     break
-        self.codes[name]=a  
+        self.codes[name]=a
 
 # 合成url
 class Composite_urls(object):
-    def __init__(self, data_pack, import_prefix):
+    def __init__(self, data_pack):
         self.data_pack=data_pack
-        self.import_prefix=import_prefix
         self.name_value_dict,self.biaozhi = data_pack(0)
+        self.import_prefix=codes.codes
     
     ## 根据助力码和self.value通过data_pack组合出url_list,输出结果
     def main_run(self):
         url_list=[]
         for name,value in self.name_value_dict.items():
             data_pack2=functools.partial(self.data_pack, value=value)
-            decode_list=eval(f'{self.import_prefix}.codes[\'{name}\']')
-            n=0
-            for decode in decode_list:
-                n+=1
+            decode_list=self.import_prefix[name]
+            for e,decode in enumerate(decode_list):
                 if decode == '' or decode == ' ':
-                    print(f'{self.biaozhi}_{value}: My{name}{str(n)} 为空\n')
+                    print(f'{self.biaozhi}_{value}: My{name}{str(e+1)} 为空\n')
                     continue
                 url=data_pack2(decode)
                 url_list.append(url)
         return url_list,self.biaozhi
 
 # He1pu_cfd的url合集
-class He1pu_cfd_urls(Composite_urls):
+class He1pu_x_urls(Composite_urls):
     ## 根据助力码和self.value通过data_pack组合出url_list,输出结果
     def main_run(self):
         url_list=[]
         for name,value in self.name_value_dict.items():
             data_pack2=functools.partial(self.data_pack, value=value)
-            decode_list=eval(f'{self.import_prefix}.codes[\'{name}\']')
-            n=0
-            for decode in decode_list:
-                n+=1
+            decode_list=self.import_prefix[name]
+            for e,decode in enumerate(decode_list):
                 try:
-                    pin=pin_list[n-1]
+                    pin=pin_list[e]
                 except:
-                    print(f'{self.biaozhi}_{value}: My{name}{str(n)} 对应的pin不存在\n')
+                    print(f'{self.biaozhi}_{value}: My{name}{str(e+1)} 对应的pin不存在\n')
                     continue
                 if decode == '' or decode == ' ':
-                    print(f'{self.biaozhi}_{value}: My{name}{str(n)} 为空\n')
+                    print(f'{self.biaozhi}_{value}: My{name}{str(e+1)} 为空\n')
                     continue
                 url=data_pack2(decode,pin=pin)
                 url_list.append(url)
@@ -176,29 +171,27 @@ class He1pu_cfd_urls(Composite_urls):
 
 
 # Helloworld_cfd的url合集
-class Helloworld_cfd_urls(Composite_urls):
+class Helloworld_x_urls(Composite_urls):
     ## 根据助力码和self.value通过data_pack组合出url_list,输出结果
     def main_run(self):
         url_list=[]
         for name,value in self.name_value_dict.items():
             data_pack2=functools.partial(self.data_pack, value=value)
-            decode_list=eval(f'{self.import_prefix}.codes[\'{name}\']')
-            farm_code_list=eval(f'{self.import_prefix}.codes[\'Fruit\']')
-            bean_code_list=eval(f'{self.import_prefix}.codes[\'Bean\']')        
-            n=0
-            for decode in decode_list:
-                n+=1
+            decode_list=self.import_prefix[name]
+            farm_code_list=self.import_prefix['Fruit']
+            bean_code_list=self.import_prefix['Bean']       
+            for e,decode in enumerate(decode_list):
                 try:
-                    pin=pin_list[n-1]
-                    farm_code=farm_code_list[n-1]
-                    bean_code=bean_code_list[n-1]
+                    pin=pin_list[e]
+                    farm_code=farm_code_list[e]
+                    bean_code=bean_code_list[e]
                 except:
-                    print(f'{self.biaozhi}_{value}: My{name}{str(n)} 对应的pin或farm_code或bean_code不存在\n')
+                    print(f'{self.biaozhi}_{value}: My{name}{str(e+1)} 对应的数据不存在\n')
                     continue
                 if decode == '' or decode == ' ':
-                    print(f'{self.biaozhi}_{value}: My{name}{str(n)} 为空\n')
+                    print(f'{self.biaozhi}_{value}: My{name}{str(e+1)} 为空\n')
                     continue
-                url=data_pack2(decode,pin=pin,farm_code=0, bean_code=bean_code)
+                url=data_pack2(decode,pin=pin,farm_code=farm_code, bean_code=bean_code)
                 url_list.append(url)
         return url_list,self.biaozhi
 
@@ -242,14 +235,14 @@ class Bulk_request(object):
             code=a.group(2)
             value=a.group(1)
             pin='' 
-        elif self.biaozhi=='he1pu_cfd':
+        elif 'he1pu_' in self.biaozhi:
             a=re.match(r'.*?=(.*?)\&.*?=(.*?)\&(.*)',url)
-            code=''
+            code=a.group(1)
             value=a.group(2)
             pin=a.group(3)    
-        elif self.biaozhi=='helloworld_cfd':
+        elif 'helloworld_' in self.biaozhi:
             a=re.match(r'.*?sert\/(.*?)\?.*=(.*?)\&.*?=(.*?)\&.*?=(.*?)\&(.*)',url)
-            code=''
+            code=a.group(2) 
             value=a.group(1) 
             pin=a.group(5)
         return code,value,pin
@@ -284,11 +277,11 @@ class Bulk_request(object):
                 self.log.append(f'{biaozhi}_{self.value}: 服务器连接错误\n')
                 state=1
         elif biaozhi=='helloworld':
-            if '0' in res:
-                self.log.append(f'{biaozhi}_{self.value}: 请在tg机器人处提交助力码后再激活\n')
-                state=0
-            elif '1' in res:
+            if '1' in res or '200' in res:
                 self.log.append(f'{biaozhi}_{self.value}: 激活成功\n')
+                state=0
+            elif '0' in res:
+                self.log.append(f'{biaozhi}_{self.value}: 请在tg机器人处提交助力码后再激活\n')
                 state=0
             else:
                 self.log.append(f'{biaozhi}_{self.value}: 服务器连接错误\n')
@@ -325,8 +318,8 @@ class Bulk_request(object):
 
 ## he1pu数据
 def he1pu(decode, *, value=0):
-    biaozhi = 'he1pu'
     name_value_dict={'Fruit':'farm','Bean':'bean','Pet':'pet','DreamFactory':'jxfactory','JdFactory':'ddfactory','Sgmh':'sgmh','Health':'health'}
+    biaozhi = 'he1pu'
     r=f'http://www.helpu.cf/jdcodes/submit.php?code={decode}&type={value}'
     if decode==0:
         return name_value_dict, biaozhi
@@ -335,8 +328,8 @@ def he1pu(decode, *, value=0):
 
 ## helloworld数据
 def helloworld(decode, *, value=0):
+    name_value_dict={'Fruit':'farm','Bean':'bean','Pet':'pet','DreamFactory':'jxfactory','JdFactory':'ddfactory','Sgmh':'sgmh','Health':'health'}
     biaozhi='helloworld'
-    name_value_dict={'Fruit':'farm','Bean':'bean','Pet':'pet','DreamFactory':'jxfactory','JdFactory':'ddfactory','Sgmh':'sgmh','Health':'health','Cfd':'jxcfd'}
     r=f'https://api.jdsharecode.xyz/api/runTimes?sharecode={decode}&activityId={value}'
     if decode==0:
         return name_value_dict, biaozhi
@@ -345,74 +338,81 @@ def helloworld(decode, *, value=0):
 
 ## passerbyBot数据
 def passerbyBot(decode, *, value=0):
-    biaozhi='passerbyBot'
     name_value_dict={'Fruit':'FruitCode','JdFactory':'FactoryCode', 'Cfd':'CfdCode'}
+    biaozhi='passerbyBot'
     r=f'http://51.15.187.136:8080/activeJd{value}?code={decode}'
     if decode==0:
         return name_value_dict, biaozhi
     else:
         return r 
 
-## he1pu_cfd数据
-def he1pu_cfd(decode, *, pin=0, value=0):
-    biaozhi = 'he1pu_cfd'
-    name_value_dict={'Cfd':'jxcfd'}
+## he1pu_x数据
+def he1pu_x(decode, *, pin=0, value=0):
+    name_value_dict={'Cfd':'jxcfd','mohe':'mohe'}
+    biaozhi = 'he1pu_x'
     r=f'http://www.helpu.cf/jdcodes/submit.php?code={decode}&type={value}&user={pin}'
     if value==0:
         return name_value_dict, biaozhi
     else:
         return r
 
-## helloworld_cfd数据
-def helloworld_cfd(decode, *, pin=0, farm_code=0, bean_code=0, value=0):
-    biaozhi='helloworld_cfd'
-    name_value_dict={'Cfd':'jxcfd'}
+## helloworld_x数据
+def helloworld_x(decode, *, pin=0, farm_code=0, bean_code=0, value=0):
+    name_value_dict={'Cfd':'jxcfd','jxmc':'jxmc'}
+    biaozhi='helloworld_x'
     r=f'https://api.jdsharecode.xyz/api/autoInsert/{value}?sharecode={decode}&bean={bean_code}&farm={farm_code}&pin={pin}'
     if value==0:
         return name_value_dict, biaozhi
     else:
         return r
 
-## he1pu_cfd数据
-def he1pu_mohe(decode, *, pin=0, value=0):
-    biaozhi = 'he1pu_cfd'
-    name_value_dict={'mohe':'mohe'}
-    r=f'http://www.helpu.cf/jdcodes/submit.php?code={decode}&type={value}&user={pin}'
-    if value==0:
-        return name_value_dict, biaozhi
-    else:
-        return r
-
-def main_run(data_pack,import_prefix='law_code'):
-    url_list,biaozhi=Composite_urls(data_pack, import_prefix).main_run()
+def main_run(data_pack):
+    url_list,biaozhi=Composite_urls(data_pack).main_run()
     Bulk_request(url_list, biaozhi).main_run()
 
-## he1pu_cfd master函数
-def helloworld_cfd_main_run(data_pack, import_prefix='law_code'):
-    url_list,biaozhi=Helloworld_cfd_urls(data_pack, import_prefix).main_run()
+## helloworld master函数
+def helloworld_x_main_run(data_pack):
+    url_list,biaozhi=Helloworld_x_urls(data_pack).main_run()
     Bulk_request(url_list, biaozhi).main_run()
 
-## he1pu_cfd master函数
-def he1pu_cfd_main_run(data_pack, import_prefix='law_code'):
-    url_list,biaozhi=He1pu_cfd_urls(data_pack, import_prefix).main_run()
+## he1pu master函数
+def he1pu_x_main_run(data_pack):
+    url_list,biaozhi=He1pu_x_urls(data_pack).main_run()
     Bulk_request(url_list, biaozhi).main_run()
 
 if __name__=='__main__':
     path,pin_list,ckkk=Judge_env().main_run()
-    match_list=['Health', 'MoneyTree', 'JdFactory', 'DreamFactory', 'Cfd', 'Carni', 'TokenJxnc', 'Jxnc', 'Joy', 'City', 'Bean', 'Cash', 'Pet', 'BookShop', 'Jdzz', 'Sgmh', 'Fruit']
-    law_code=Import_files(path,match_list)
-    law_code.main_run()
-    log_code=Look_log_code(['/ql/log/shufflewzc_faker2_jd_mohe'],['5G超级盲盒'],['mohe'])
-    log_code.main_run()
+    name_list,match_list,path_list=Import_files(path).path_list()
+    codes=Look_log_code()
+    codes.set_var(name_list,match_list,path_list,ckkk)
+    name_list=['mohe', 'jxmc']
+    match_list=[r'.*?5G超级盲盒好友互助码\】(.*?)\n',r'.*?互助码\：(.*?)\n']
+    path_list=['/ql/log/shufflewzc_faker2_jd_mohe', '/ql/log/shufflewzc_faker2_jd_jxmc']
+    codes.set_var(name_list,match_list,path_list,ckkk)
     pool = Pool(3)
     pool.apply_async(func=main_run,args=(passerbyBot,))   ## 创建passerbyBot激活任务
     pool.apply_async(func=main_run,args=(he1pu,))   ## 创建he1pu提交任务
     pool.apply_async(func=main_run,args=(helloworld,))  ## 创建helloworld激活任务
-    pool.apply_async(func=he1pu_cfd_main_run,args=(he1pu_cfd,))  ## 创建he1pu_cfd活任务
-    pool.apply_async(func=helloworld_cfd_main_run,args=(helloworld_cfd,))  ## 创建helloworld_cfd激活任务
-    pool.apply_async(func=he1pu_cfd_main_run,args=(he1pu_mohe,'log_code'))  ## 创建he1pu_mohe激活任务
+    pool.apply_async(func=he1pu_x_main_run,args=(he1pu_x,))  ## 创建he1pu_cfd活任务
+    pool.apply_async(func=helloworld_x_main_run,args=(helloworld_x,))  ## 创建helloworld_cfd激活任务
     pool.close()
     pool.join()
+
+    # 测试   
+    # main_run(passerbyBot)
+    # main_run(he1pu)
+    # main_run(helloworld)
+    # he1pu_cfd_main_run(he1pu_cfd)
+    # helloworld_cfd_main_run(helloworld_cfd)
+    # he1pu_cfd_main_run(he1pu_mohe)
+    # helloworld_cfd_main_run(helloworld_jxmc)
+    # 测试
+    # print(codes.codes)
+    # print(name_list,'\n',match_list,'\n',path_list)
+    # print(law_code.codes)
+    # print(log_code.codes)
+    # print(codes_dict)
+
     print('wuye9999')
 
 
