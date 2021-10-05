@@ -23,7 +23,7 @@ class Judge_env(object):
                 return '/ql/log/.ShareCode'
             else:
                 return '/ql/log/code'
-        elif '/jd' in os.path.abspath('.'):
+        elif os.path.exists('/jd/log/jcode'):
             print("当前环境V4\n")
             return '/jd/log/jcode'
         else:

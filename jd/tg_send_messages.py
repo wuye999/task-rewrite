@@ -14,6 +14,7 @@ tg_send_messages_2='@JD_ShareCode_Bot>>>/help'
 # export tg_send_messages_2="@JD_ShareCode_Bot>>>/help"
 
 import os
+import re
 try:
     from telethon import TelegramClient, events, sync
 except:
@@ -25,7 +26,7 @@ def get_tg_api():
     if 'tg_api_id' in os.environ:
         a=int(os.environ['tg_api_id'])
         b=os.environ['tg_api_hash']
-    elif '/jd' in os.path.abspath('.'):
+    elif os.path.exists('/jd/log/jcode'):
         a=int(codes.set_var(['tg_api_id'],[r'export tg_api_id.*?="(.*?)"'],['/jd/config/config.sh'],1))
         b=codes.set_var(['tg_api_hash'],[r'export tg_api_hash.*?="(.*?)"'],['/jd/config/config.sh'],1)
     else:
@@ -40,7 +41,7 @@ def env_set(env):
         try:
             if f'{env}_1' in os.environ:
                 b=os.environ[f'{env}_{n}']
-            elif '/jd' in os.path.abspath('.'):
+            elif os.path.exists('/jd/log/jcode'):
                 b=codes.set_var([f'{env}_{n}'],[r'export '+f'{env}_{n}'+r'.*?="(.*?)"'],['/jd/config/config.sh'],1)
             else:
                 b=eval(f'{env}_{n}')
@@ -110,7 +111,7 @@ class Look_log_code(object):
 
 # 发送消息
 def send_mess(tg_send_messages_list):
-    with TelegramClient('anon', tg_api_id, tg_api_hash) as client:
+    with TelegramClient(anon, tg_api_id, tg_api_hash) as client:
         client.start()
         for username_information in tg_send_messages_list:
             a=username_information.split('>>>')
@@ -127,22 +128,26 @@ def tip():
     if os.path.abspath('.')=='/ql/scripts':
         print("当前环境青龙\n")
         print('第一次请在命令行运行 cd /ql/scripts && python3 xxxxxx.py 登陆tg获取密钥\n')
-    elif '/jd' in os.path.abspath('.'):
+        anon='anon'
+    elif os.path.exists('/jd/log/jcode'):
         print("当前环境V4\n")
-        print('第一次请在命令行运行 cd /jd && python3 xxxxxx.py 登陆tg获取密钥\n')
+        print('第一次请在命令行运行 cd /jd/scripts && python3 xxxxxx.py 登陆tg获取密钥\n')
+        anon='/jd/scripts/anon'
     else:
         print('运行目录下 python3 /运行目录/xxxxxx.py 登陆tg获取密钥\n')
+        anon='anon'
+    return anon
 
 
 if __name__=='__main__':
-    tip()
+    anon=tip()
     codes=Look_log_code()
     tg_api_id,tg_api_hash=get_tg_api()
     try:
-        with TelegramClient('anon', tg_api_id, tg_api_hash) as client:
-            client.start()
+        with TelegramClient(anon, tg_api_id, tg_api_hash) as client:
+            client.start()    
     except:
-        print('网络环境出错, 或tg_api出错,或验证码出错')
+        print('网络环境出错, 或tg_api出错，或验证出错')
     tg_send_messages_list=env_set('tg_send_messages')
     send_mess(tg_send_messages_list)
     print('\nwuye9999')
