@@ -1,0 +1,27 @@
+{
+  "name": "番茄看看，云扫码前台",
+  "author": "elecV2p",
+  "mitmhost": ["mp.weixin.qq.com"],
+  "rewrite": [
+    {
+      "match": "^http://.+/yunonline/v1/task",
+      "target": "https://ghproxy.com/https://raw.githubusercontent.com/age174/-/main/fqkk_auto_read.js",
+      "enable": true
+    },
+    {
+      "match": "^http://.+/(reada/jump|v1/jump|task/read)?",
+      "target": "https://ghproxy.com/https://raw.githubusercontent.com/age174/-/main/fqkk_auto_read.js",
+      "enable": true
+    },
+    {
+      "match": "^http://.+/mock/read",
+      "target": "https://ghproxy.com/https://raw.githubusercontent.com/age174/-/main/fqkk_auto_read.js",
+      "enable": true
+    }, 
+    {
+      "match": "^https?://mp.weixin.qq.com/s.+?k=feizao",
+      "target": "</script> response-body setTimeout(()=>window.history.back(),10000); </script>",
+      "enable": true
+    }
+  ]
+}
