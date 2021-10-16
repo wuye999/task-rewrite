@@ -1,0 +1,12 @@
+{
+  "name": "10s阅读前台",
+  "author": "elecV2p",
+  "mitmhost": ["m.lainiwl.top"],
+  "rewrite": [
+    {
+      "match": ".*read_channel\/do_read&pageshow.*",
+      "target": "https://ghproxy.com/https://raw.githubusercontent.com/Wenmoux/monster/main/10sread/jrkuaixun.js",
+      "enable": true
+    }
+  ]
+}
