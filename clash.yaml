@@ -20,9 +20,7 @@ proxies:
     password: f34579d0148b2581
     cipher: aes-256-gcm
     delay: 606
-  - name: >-
-      希腊 - 塞萨洛尼基 - SYNAPSECOM S.A. Provider of Telecommunications and Internet
-      Services - 1
+  - name: 希腊 SYNAPSECOM
     server: 192.71.166.100
     type: ss
     country: 🇬🇷GR
